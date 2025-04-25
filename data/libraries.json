@@ -1,0 +1,133 @@
+{
+  "libraries": [
+    {
+      "id": "bootstrap",
+      "name": "Bootstrap",
+      "description": "Il framework CSS più popolare per sviluppare siti web responsive e mobile-first",
+      "version": "5.3.0",
+      "website": "https://getbootstrap.com/",
+      "documentation": "https://getbootstrap.com/docs/5.3/getting-started/introduction/",
+      "categories": ["css", "framework", "responsive", "ui"],
+      "commands": [
+        {
+          "name": "Installazione",
+          "syntax": "npm install bootstrap",
+          "description": "Installa Bootstrap tramite npm"
+        },
+        {
+          "name": "Inclusione CSS",
+          "syntax": "<link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css\" rel=\"stylesheet\">",
+          "description": "Includi Bootstrap CSS tramite CDN"
+        },
+        {
+          "name": "Inclusione JS",
+          "syntax": "<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js\"></script>",
+          "description": "Includi Bootstrap JavaScript tramite CDN"
+        }
+      ],
+      "examples": [
+        {
+          "name": "Griglia Responsive",
+          "code": "<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-md-4\">Colonna 1</div>\n    <div class=\"col-md-4\">Colonna 2</div>\n    <div class=\"col-md-4\">Colonna 3</div>\n  </div>\n</div>",
+          "description": "Esempio di griglia responsive Bootstrap"
+        },
+        {
+          "name": "Bottone",
+          "code": "<button type=\"button\" class=\"btn btn-primary\">Bottone Primario</button>",
+          "description": "Esempio di bottone Bootstrap"
+        },
+        {
+          "name": "Card",
+          "code": "<div class=\"card\" style=\"width: 18rem;\">\n  <img src=\"...\" class=\"card-img-top\" alt=\"...\">\n  <div class=\"card-body\">\n    <h5 class=\"card-title\">Titolo Card</h5>\n    <p class=\"card-text\">Contenuto della card.</p>\n    <a href=\"#\" class=\"btn btn-primary\">Vai</a>\n  </div>\n</div>",
+          "description": "Esempio di card Bootstrap"
+        }
+      ]
+    },
+    {
+      "id": "tailwind",
+      "name": "Tailwind CSS",
+      "description": "Un framework CSS utility-first per la creazione rapida di design personalizzati",
+      "version": "3.3.3",
+      "website": "https://tailwindcss.com/",
+      "documentation": "https://tailwindcss.com/docs",
+      "categories": ["css", "framework", "utility", "ui"],
+      "commands": [
+        {
+          "name": "Installazione",
+          "syntax": "npm install tailwindcss",
+          "description": "Installa Tailwind CSS tramite npm"
+        },
+        {
+          "name": "Inizializzazione",
+          "syntax": "npx tailwindcss init",
+          "description": "Crea il file di configurazione tailwind.config.js"
+        },
+        {
+          "name": "Inclusione CDN",
+          "syntax": "<script src=\"https://cdn.tailwindcss.com\"></script>",
+          "description": "Includi Tailwind CSS tramite CDN (solo per sviluppo)"
+        }
+      ],
+      "examples": [
+        {
+          "name": "Card",
+          "code": "<div class=\"max-w-sm rounded overflow-hidden shadow-lg\">\n  <img class=\"w-full\" src=\"/img/card-top.jpg\" alt=\"Sunset in the mountains\">\n  <div class=\"px-6 py-4\">\n    <div class=\"font-bold text-xl mb-2\">Titolo Card</div>\n    <p class=\"text-gray-700 text-base\">Contenuto della card.</p>\n  </div>\n</div>",
+          "description": "Esempio di card con Tailwind CSS"
+        },
+        {
+          "name": "Bottone",
+          "code": "<button class=\"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded\">Bottone</button>",
+          "description": "Esempio di bottone con Tailwind CSS"
+        },
+        {
+          "name": "Layout Responsive",
+          "code": "<div class=\"container mx-auto px-4\">\n  <div class=\"flex flex-wrap -mx-4\">\n    <div class=\"w-full md:w-1/3 px-4 mb-4\">Colonna 1</div>\n    <div class=\"w-full md:w-1/3 px-4 mb-4\">Colonna 2</div>\n    <div class=\"w-full md:w-1/3 px-4 mb-4\">Colonna 3</div>\n  </div>\n</div>",
+          "description": "Esempio di layout responsive con Tailwind CSS"
+        }
+      ]
+    },
+    {
+      "id": "react",
+      "name": "React",
+      "description": "Una libreria JavaScript per costruire interfacce utente",
+      "version": "18.2.0",
+      "website": "https://reactjs.org/",
+      "documentation": "https://reactjs.org/docs/getting-started.html",
+      "categories": ["javascript", "framework", "ui", "frontend"],
+      "commands": [
+        {
+          "name": "Creazione App",
+          "syntax": "npx create-react-app my-app",
+          "description": "Crea una nuova applicazione React"
+        },
+        {
+          "name": "Avvio Sviluppo",
+          "syntax": "npm start",
+          "description": "Avvia il server di sviluppo"
+        },
+        {
+          "name": "Build Produzione",
+          "syntax": "npm run build",
+          "description": "Crea una build di produzione"
+        }
+      ],
+      "examples": [
+        {
+          "name": "Componente Funzionale",
+          "code": "function Welcome(props) {\n  return <h1>Ciao, {props.name}</h1>;\n}\n\nexport default Welcome;",
+          "description": "Esempio di componente funzionale React"
+        },
+        {
+          "name": "Componente con Stato",
+          "code": "import { useState } from 'react';\n\nfunction Counter() {\n  const [count, setCount] = useState(0);\n\n  return (\n    <div>\n      <p>Hai cliccato {count} volte</p>\n      <button onClick={() => setCount(count + 1)}>\n        Clicca qui\n      </button>\n    </div>\n  );\n}",
+          "description": "Esempio di componente React con stato"
+        },
+        {
+          "name": "Effetti Collaterali",
+          "code": "import { useState, useEffect } from 'react';\n\nfunction Example() {\n  const [count, setCount] = useState(0);\n\n  useEffect(() => {\n    document.title = `Hai cliccato ${count} volte`;\n  });\n\n  return (\n    <div>\n      <p>Hai cliccato {count} volte</p>\n      <button onClick={() => setCount(count + 1)}>\n        Clicca qui\n      </button>\n    </div>\n  );\n}",
+          "description": "Esempio di effetti collaterali in React con useEffect"
+        }
+      ]
+    }
+  ]
+}
