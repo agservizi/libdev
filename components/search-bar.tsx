@@ -164,7 +164,7 @@ export function SearchBar() {
 
   return (
     <div className="w-full" id="search">
-      <Card className="p-4 shadow-lg border-2 border-gray-100 dark:border-gray-800">
+      <Card className="p-4 shadow-lg border-2 border-gray-100 dark:border-gray-800 w-full max-w-4xl mx-auto">
         <form onSubmit={handleSubmit} className="relative">
           <div className="relative flex items-center">
             <div className="relative w-full">
@@ -277,7 +277,7 @@ export function SearchBar() {
       </Card>
 
       {isLoading ? (
-        <div className="mt-12 text-center">
+        <div className="mt-12 text-center w-full max-w-4xl mx-auto">
           <Loader2 className="h-10 w-10 animate-spin text-blue-600 mx-auto" />
           <p className="mt-4 text-gray-500 dark:text-gray-400">Ricerca in corso...</p>
         </div>

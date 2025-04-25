@@ -53,7 +53,7 @@ export function ResultsSection({ results, query }: ResultsSectionProps) {
   // Gestione dell'errore
   if (results.error) {
     return (
-      <div className="mt-12 text-center">
+      <div className="mt-12 text-center w-full max-w-4xl mx-auto">
         <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-100 dark:bg-red-900/20 mb-4">
           <AlertTriangle className="h-8 w-8 text-red-600 dark:text-red-400" />
         </div>
@@ -129,7 +129,7 @@ export function ResultsSection({ results, query }: ResultsSectionProps) {
   }, 0)
 
   return (
-    <div className="mt-12 w-full">
+    <div className="mt-12 w-full max-w-4xl mx-auto">
       <div className="mb-8">
         <div className="flex items-center justify-between mb-4">
           <div>
@@ -202,7 +202,7 @@ export function ResultsSection({ results, query }: ResultsSectionProps) {
                   return (
                     <Card
                       key={idx}
-                      className="overflow-hidden border-gray-200 dark:border-gray-700 shadow-md hover:shadow-lg transition-shadow"
+                      className="overflow-hidden border-gray-200 dark:border-gray-700 shadow-md hover:shadow-lg transition-shadow w-full"
                     >
                       <CardHeader className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 border-b border-gray-200 dark:border-gray-700">
                         <div className="flex justify-between items-start">
