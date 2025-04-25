@@ -65,8 +65,12 @@
     "@monaco-editor/react": "latest",
     "prettier": "latest",
     "uuid": "latest",
+    "@babel/standalone": "latest",
+    "fs": "latest",
+    "path": "latest",
     "@prisma/client": "latest",
-    "@babel/standalone": "latest"
+    "child_process": "latest",
+    "dotenv": "latest"
   },
   "devDependencies": {
     "@types/node": "^22",
