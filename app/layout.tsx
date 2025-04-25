@@ -1,31 +1,30 @@
 import type React from "react"
-import "./globals.css"
-import type { Metadata } from "next"
+import type { Metadata } from "next/types"
 import { Inter } from "next/font/google"
+import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
-import Footer from "@/components/Footer"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "LibDev - Ricerca Linguaggi di Programmazione",
-  description: "Cerca comandi, sintassi ed esempi per linguaggi di programmazione",
+  title: "LibDev - Il tuo assistente di programmazione",
+  description: "Cerca sintassi, comandi ed esempi di linguaggi di programmazione",
+  icons: {
+    icon: "/favicon.ico",
+  },
     generator: 'v0.dev'
 }
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode
-}) {
+}>) {
   return (
     <html lang="it" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={`${inter.className} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <div className="flex flex-col min-h-screen">
-            <div className="flex-grow">{children}</div>
-            <Footer />
-          </div>
+          {children}
         </ThemeProvider>
       </body>
     </html>

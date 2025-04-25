@@ -1,63 +1,55 @@
 import { type NextRequest, NextResponse } from "next/server"
-import programmingData from "@/data/commands.json"
+import { programmingData } from "@/data/programming-data-server"
 
 export async function GET(request: NextRequest) {
-  const searchParams = request.nextUrl.searchParams
-  const query = searchParams.get("q")
+  try {
+    const searchParams = request.nextUrl.searchParams
+    const queryParam = searchParams.get("q")
+    // Assicuriamoci che queryParam sia una stringa prima di chiamare toLowerCase()
+    const query = typeof queryParam === "string" ? queryParam.toLowerCase() : ""
 
-  if (!query || query.length < 2) {
-    return NextResponse.json({ suggestions: [] })
+    if (!query || query.length < 2) {
+      return NextResponse.json({ suggestions: [] })
+    }
+
+    const suggestions: string[] = []
+
+    // Verifichiamo che programmingData e programmingData.languages esistano
+    if (!programmingData || !programmingData.languages) {
+      throw new Error("Dati di programmazione non disponibili")
+    }
+
+    // Aggiungi i nomi dei linguaggi come suggerimenti
+    Object.keys(programmingData.languages).forEach((language) => {
+      if (!language) return
+
+      const languageLower = String(language).toLowerCase()
+      if (languageLower.includes(query) && !suggestions.includes(language)) {
+        suggestions.push(language)
+      }
+    })
+
+    // Aggiungi i nomi dei comandi come suggerimenti
+    Object.values(programmingData.languages).forEach((data) => {
+      if (!data || !Array.isArray(data.commands)) return
+
+      data.commands.forEach((command) => {
+        if (!command || !command.name) return
+
+        const commandNameLower = String(command.name).toLowerCase()
+        if (commandNameLower.includes(query) && !suggestions.includes(command.name)) {
+          suggestions.push(command.name)
+        }
+      })
+    })
+
+    // Limita a 10 suggerimenti
+    return NextResponse.json({ suggestions: suggestions.slice(0, 10) })
+  } catch (error) {
+    console.error("Errore durante l'elaborazione dei suggerimenti:", error)
+    return NextResponse.json(
+      { error: true, message: "Si è verificato un errore durante l'elaborazione dei suggerimenti", suggestions: [] },
+      { status: 500 },
+    )
   }
-
-  const normalizedQuery = query.toLowerCase().trim()
-
-  // Get suggestions from titles
-  const titleSuggestions = programmingData
-    .filter((item) => item.title.toLowerCase().includes(normalizedQuery))
-    .map((item) => item.title)
-
-  // Get category suggestions
-  const categorySuggestions = programmingData
-    .flatMap((item) => item.categories || [])
-    .filter((category) => category.name.toLowerCase().includes(normalizedQuery))
-    .map((category) => category.name)
-    .slice(0, 3) // Limit category suggestions
-
-  // Get command suggestions from categories
-  const categoryCommandSuggestions = programmingData
-    .flatMap((item) =>
-      (item.categories || []).flatMap((category) =>
-        category.commands.map((cmd) => ({
-          syntax: cmd.syntax,
-          language: item.title,
-        })),
-      ),
-    )
-    .filter((cmd) => cmd.syntax.toLowerCase().includes(normalizedQuery))
-    .map((cmd) => `${cmd.syntax} (${cmd.language})`)
-    .slice(0, 5) // Limit command suggestions
-
-  // Get legacy command suggestions
-  const legacyCommandSuggestions = programmingData
-    .flatMap((item) =>
-      (item.commands || []).map((cmd) => ({
-        syntax: cmd.syntax,
-        language: item.title,
-      })),
-    )
-    .filter((cmd) => cmd.syntax.toLowerCase().includes(normalizedQuery))
-    .map((cmd) => `${cmd.syntax} (${cmd.language})`)
-    .slice(0, 3) // Limit legacy command suggestions
-
-  // Combine and remove duplicates
-  const allSuggestions = [
-    ...new Set([
-      ...titleSuggestions,
-      ...categorySuggestions,
-      ...categoryCommandSuggestions,
-      ...legacyCommandSuggestions,
-    ]),
-  ].slice(0, 10) // Limit to 10 suggestions
-
-  return NextResponse.json({ suggestions: allSuggestions })
 }
