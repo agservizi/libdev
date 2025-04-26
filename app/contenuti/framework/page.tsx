@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import { FrameworkCard } from "@/components/framework-card"
-import { getAllFrameworks } from "@/data/frameworks-data"
+import { getAllFrameworks } from "@/data/frameworks-data-server"
 
 export const metadata: Metadata = {
   title: "Framework e Librerie | LibDev",
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 }
 
 export default function FrameworkPage() {
-  // Ottieni i framework direttamente dal file di dati locale
+  // Ottieni i framework dal file di dati server-side
   const frameworks = getAllFrameworks()
 
   return (
