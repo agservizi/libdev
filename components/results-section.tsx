@@ -14,13 +14,14 @@ import {
   Search,
   Info,
   Bookmark,
-  Share2,
   AlertTriangle,
+  LinkIcon,
 } from "lucide-react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { Badge } from "@/components/ui/badge"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import { useToast } from "@/components/ui/use-toast"
 
 interface ResultsSectionProps {
   results: {
@@ -45,6 +46,7 @@ export function ResultsSection({ results, query }: ResultsSectionProps) {
   const [copiedIndex, setCopiedIndex] = useState<string | null>(null)
   const [bookmarked, setBookmarked] = useState<Record<string, boolean>>({})
   const router = useRouter()
+  const { toast } = useToast()
 
   // Verifichiamo che results.languages esista e non sia vuoto
   const hasLanguages = results.languages && Object.keys(results.languages).length > 0
@@ -92,6 +94,12 @@ export function ResultsSection({ results, query }: ResultsSectionProps) {
     navigator.clipboard.writeText(text)
     setCopiedIndex(id)
     setTimeout(() => setCopiedIndex(null), 2000)
+
+    // Mostra un toast quando il testo viene copiato
+    toast({
+      title: "Copiato negli appunti",
+      description: "Il testo è stato copiato negli appunti",
+    })
   }
 
   const toggleBookmark = (id: string) => {
@@ -106,20 +114,13 @@ export function ResultsSection({ results, query }: ResultsSectionProps) {
       language,
     )}&cmd=${encodeURIComponent(commandName)}`
 
-    if (navigator.share) {
-      navigator
-        .share({
-          title: `${commandName} in ${language}`,
-          text: `Guarda questo comando ${commandName} in ${language} su LibDev`,
-          url,
-        })
-        .catch((error) => {
-          console.error("Errore nella condivisione:", error)
-          copyToClipboard(url, "share-url")
-        })
-    } else {
-      copyToClipboard(url, "share-url")
-    }
+    // Utilizziamo direttamente la funzione di copia negli appunti
+    copyToClipboard(url, `share-${language}-${commandName}`)
+
+    toast({
+      title: "Link copiato negli appunti",
+      description: "Puoi condividere il link incollando dove preferisci",
+    })
   }
 
   // Calcola il numero totale di risultati
@@ -245,12 +246,12 @@ export function ResultsSection({ results, query }: ResultsSectionProps) {
                                   className="h-8 w-8 rounded-full"
                                   onClick={() => shareCommand(language, name)}
                                 >
-                                  <Share2 className="h-4 w-4 text-gray-400" />
-                                  <span className="sr-only">Condividi</span>
+                                  <LinkIcon className="h-4 w-4 text-gray-400" />
+                                  <span className="sr-only">Copia link</span>
                                 </Button>
                               </TooltipTrigger>
                               <TooltipContent>
-                                <p>Condividi</p>
+                                <p>Copia link</p>
                               </TooltipContent>
                             </Tooltip>
                           </div>

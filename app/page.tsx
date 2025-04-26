@@ -2,23 +2,12 @@ import type React from "react"
 import { SearchBar } from "@/components/search-bar"
 import { Logo } from "@/components/logo"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Code, Database, FileCode, GitBranch, Globe, Server } from "lucide-react"
+import { ArrowRight, Code, Database, FileCode, Globe, HelpCircle, Users } from "lucide-react"
 import Link from "next/link"
-import { AutoTheme } from "@/components/auto-theme"
 
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Header */}
-      <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl flex h-16 items-center justify-between">
-          <Logo />
-          <div className="flex items-center gap-2">
-            <AutoTheme />
-          </div>
-        </div>
-      </header>
-
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-background py-20">
         <div className="absolute inset-0 bg-grid-black/[0.02] dark:bg-grid-white/[0.02]" />
@@ -51,11 +40,13 @@ export default function Home() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <h2 className="text-3xl font-bold text-center mb-12">Esplora le nostre funzionalità</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <FeatureCard
-              icon={<Code className="h-10 w-10 text-blue-600" />}
-              title="Sintassi di linguaggi"
-              description="Accedi alla sintassi di tutti i principali linguaggi di programmazione in un unico posto"
-            />
+            <Link href="/linguaggi/JavaScript" className="block">
+              <FeatureCard
+                icon={<Code className="h-10 w-10 text-blue-600" />}
+                title="Sintassi di linguaggi"
+                description="Accedi alla sintassi di tutti i principali linguaggi di programmazione in un unico posto"
+              />
+            </Link>
             <FeatureCard
               icon={<FileCode className="h-10 w-10 text-indigo-600" />}
               title="Esempi di codice"
@@ -66,16 +57,20 @@ export default function Home() {
               title="Comandi database"
               description="Consulta i comandi più utilizzati per i principali database SQL e NoSQL"
             />
-            <FeatureCard
-              icon={<Server className="h-10 w-10 text-green-600" />}
-              title="API e framework"
-              description="Scopri come utilizzare le API e i framework più popolari con esempi concreti"
-            />
-            <FeatureCard
-              icon={<GitBranch className="h-10 w-10 text-orange-600" />}
-              title="Controllo versione"
-              description="Impara i comandi Git essenziali per gestire il tuo codice in modo efficiente"
-            />
+            <Link href="/chi-siamo" className="block">
+              <FeatureCard
+                icon={<Users className="h-10 w-10 text-green-600" />}
+                title="Chi siamo"
+                description="Scopri di più sul team dietro LibDev e la nostra missione"
+              />
+            </Link>
+            <Link href="/faq" className="block">
+              <FeatureCard
+                icon={<HelpCircle className="h-10 w-10 text-orange-600" />}
+                title="FAQ"
+                description="Trova risposte alle domande più frequenti su LibDev"
+              />
+            </Link>
             <FeatureCard
               icon={<Globe className="h-10 w-10 text-teal-600" />}
               title="Web development"
@@ -114,6 +109,12 @@ export default function Home() {
             </Link>
             <Link href="/termini" className="text-sm text-muted-foreground hover:text-foreground">
               Termini
+            </Link>
+            <Link href="/chi-siamo" className="text-sm text-muted-foreground hover:text-foreground">
+              Chi siamo
+            </Link>
+            <Link href="/faq" className="text-sm text-muted-foreground hover:text-foreground">
+              FAQ
             </Link>
           </div>
         </div>

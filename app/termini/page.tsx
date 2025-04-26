@@ -6,23 +6,16 @@ import { ArrowLeft } from "lucide-react"
 export default function TerminiPage() {
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Header */}
-      <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl flex h-16 items-center justify-between">
-          <Logo />
-          <div className="flex items-center gap-2">
-            <Button variant="outline" size="sm" asChild>
-              <Link href="/">
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Torna alla home
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </header>
-
       {/* Content */}
       <main className="flex-1 py-12">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl mb-6">
+          <Button variant="outline" size="sm" asChild>
+            <Link href="/">
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Torna alla home
+            </Link>
+          </Button>
+        </div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
           <h1 className="text-3xl font-bold mb-8">Termini e Condizioni</h1>
 
@@ -101,6 +94,12 @@ export default function TerminiPage() {
             </Link>
             <Link href="/termini" className="text-sm text-muted-foreground hover:text-foreground">
               Termini
+            </Link>
+            <Link href="/chi-siamo" className="text-sm text-muted-foreground hover:text-foreground">
+              Chi siamo
+            </Link>
+            <Link href="/faq" className="text-sm text-muted-foreground hover:text-foreground">
+              FAQ
             </Link>
           </div>
         </div>

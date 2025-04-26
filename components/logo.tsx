@@ -1,9 +1,9 @@
 import { Code2 } from "lucide-react"
 import Link from "next/link"
 
-export function Logo({ size = "default" }: { size?: "default" | "large" }) {
-  return (
-    <Link href="/" className="flex items-center gap-2 no-underline">
+export function Logo({ size = "default", asLink = true }: { size?: "default" | "large"; asLink?: boolean }) {
+  const LogoContent = () => (
+    <>
       <div
         className={`flex items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-indigo-800 text-white ${
           size === "large" ? "h-14 w-14" : "h-10 w-10"
@@ -17,6 +17,20 @@ export function Logo({ size = "default" }: { size?: "default" | "large" }) {
         </span>
         {size === "large" && <span className="text-sm text-muted-foreground">Il tuo assistente di programmazione</span>}
       </div>
-    </Link>
+    </>
+  )
+
+  if (asLink) {
+    return (
+      <Link href="/" className="flex items-center gap-2 no-underline">
+        <LogoContent />
+      </Link>
+    )
+  }
+
+  return (
+    <div className="flex items-center gap-2">
+      <LogoContent />
+    </div>
   )
 }
